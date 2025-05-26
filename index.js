@@ -1,52 +1,7 @@
 import express from 'express';
 
 const app = express();
-const listaFornecedores = [
-  {
-    empresa: "Alimentos Brasil LTDA",
-    cnpj: "12.345.678/0001-90",
-    nomeFantasia: "Brasil Foods",
-    email: "contato@brasilfoods.com.br",
-    telefone: "(11) 3456-7890",
-    endereco: "Rua das Indústrias, 1000",
-    cidade: "São Paulo",
-    estado: "SP",
-    cep: "01000-000"
-  },
-  {
-    empresa: "Tech Soluções Integradas ME",
-    cnpj: "98.765.432/0001-12",
-    nomeFantasia: "TechSol",
-    email: "suporte@techsol.com",
-    telefone: "(21) 91234-5678",
-    endereco: "Av. das Inovações, 500",
-    cidade: "Rio de Janeiro",
-    estado: "RJ",
-    cep: "20000-000"
-  },
-  {
-    empresa: "Comercial Verde Ltda",
-    cnpj: "34.567.890/0001-01",
-    nomeFantasia: "Verde Produtos Naturais",
-    email: "vendas@verdeprodutos.com.br",
-    telefone: "(31) 4002-8922",
-    endereco: "Rua das Palmeiras, 250",
-    cidade: "Belo Horizonte",
-    estado: "MG",
-    cep: "30000-000"
-  },
-  {
-    empresa: "ConstruMais Engenharia S/A",
-    cnpj: "56.789.012/0001-34",
-    nomeFantasia: "ConstruMais",
-    email: "contato@construmais.com",
-    telefone: "(41) 3232-2323",
-    endereco: "Rua do Progresso, 789",
-    cidade: "Curitiba",
-    estado: "PR",
-    cep: "80000-000"
-  }
-];
+const listaFornecedores = [];
 
 app.use(express.urlencoded({ extended: true }));
 
