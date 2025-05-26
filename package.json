@@ -1,0 +1,24 @@
+{
+  "name": "atv03_ppi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+  "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaiqueLima95/ATV03_PPI.git"
+  },
+  "author": "Caique Lima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CaiqueLima95/ATV03_PPI/issues"
+  },
+  "homepage": "https://github.com/CaiqueLima95/ATV03_PPI#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
