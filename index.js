@@ -1,12 +1,30 @@
 import express from 'express';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const listaFornecedores = [];
-
 app.use(express.urlencoded({ extended: true }));
+// Configuração de sessão
+//adicionado a aplicação middleware de sessão
+app.use(session({
+  secret: 'minhachavesecreta',
+  resave: false,
+  saveUninitialized: true, 
+  cookie: { 
+    maxAge: 1000 * 60 *15, // 15 minutos de inatividade a sessão será destruída
+    httpOnly: true, // Impede acesso ao cookie via JavaScript
+    secure: false // Defina como true se estiver usando HTTPS
+  } // Defina como true se estiver usando HTTPS
+}));
+
+app.use(cookieParser()); // Middleware para analisar cookies
+
 
 //pagina de login
 app.get('/login',(req,res)=>{
+  // Verifica se o usuário já está autenticado  
+
   res.send(`
     <html lang="pt-br">
   <head>
@@ -71,6 +89,41 @@ app.get('/login',(req,res)=>{
   `);
 });
 
+app.post('/login', (req, res) => {
+  const { email, senha } = req.body;
+
+  // Simulação de validação de login
+  if (email =='' || senha == '') {
+    res.send(`
+      <html lang="pt-br">
+        <head>
+          <meta charset="UTF-8">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+          <title>Erro de Login</title>
+        </head>
+        <body>
+          <div class="container mt-5">
+            <div class="alert alert-danger" role="alert">
+              Email e senha são obrigatórios!
+            </div>
+            <a href="/login" class="btn btn-primary">Voltar</a>
+          </div>
+        </body>
+      </html>
+    `);
+  }
+  else{
+    // Aqui você pode adicionar a lógica de autenticação real
+    // Por exemplo, verificar o email e senha em um banco de dados
+  if(email =='caique' && senha == '123456'){
+    req.session.authenticated = true; // Marca a sessão como autenticada
+    var dataHoraAtual = new Date();
+    res.cookie('ultimoAcesso', dataHoraAtual.toLocaleDateString(),maxAge: 1000 * 60 * 15); // Define o cookie com a data e hora do último acesso, válido por 15 minutos
+    res.redirect('/');// Se a autenticação for bem-sucedida, redireciona para a página inicial
+  }
+ }
+});
+  
 //Página inicial
 app.get('/', (req, res) => {
     res.send(`
